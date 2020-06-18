@@ -51,7 +51,7 @@
         </div>
 
         <div class="stats--item">
-            <em>5</em>
+            <em>${numberOfDonations}</em>
             <h3>Przekazanych darów</h3>
             <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam magnam, sint nihil cupiditate quas
                 quam.</p>
@@ -109,29 +109,20 @@
             Możesz sprawdzić czym się zajmują.</p>
 
         <ul class="help--slides-items">
+            <c:forEach items="${institutions}" var="institution" varStatus="count">
+                <c:if test="${count.count % 2 != 0}" >
             <li>
+                </c:if>
                 <div class="col">
-                    <div class="title">Fundacja "Dbam o Zdrowie"</div>
-                    <div class="subtitle">Cel i misja: Pomoc dzieciom z ubogich rodzin.</div>
+                    <div class="title">Fundacja "${institution.name}"</div>
+                    <div class="subtitle">Cel i misja: ${institution.description}</div>
                 </div>
-
-                <div class="col">
-                    <div class="title">Fundacja "A kogo"</div>
-                    <div class="subtitle">Cel i misja: Pomoc wybudzaniu dzieci ze śpiączki.</div>
-                </div>
-            </li>
-
-            <li>
-                <div class="col">
-                    <div class="title">Fundacja “Dla dzieci"</div>
-                    <div class="subtitle">Cel i misja: Pomoc osobom znajdującym się w trudnej sytuacji życiowej.</div>
-                </div>
-                <div class="col">
-                    <div class="title">Fundacja “Bez domu”</div>
-                    <div class="subtitle">Cel i misja: Pomoc dla osób nie posiadających miejsca zamieszkania</div>
-                </div>
+                <c:if test="${count.count %2 == 0}">
 
             </li>
+                </c:if>
+            </c:forEach>
+
 
         </ul>
     </div>
@@ -140,28 +131,7 @@
 
 <jsp:include page="footer.jsp"/>
 
-<%--<footer>--%>
-<%--    <div class="contact">--%>
-<%--        <h2>Skontaktuj się z nami</h2>--%>
-<%--        <h3>Formularz kontaktowy</h3>--%>
-<%--        <form class="form--contact">--%>
-<%--            <div class="form-group form-group--50"><input type="text" name="name" placeholder="Imię"/></div>--%>
-<%--            <div class="form-group form-group--50"><input type="text" name="surname" placeholder="Nazwisko"/></div>--%>
 
-<%--            <div class="form-group"><textarea name="message" placeholder="Wiadomość" rows="1"></textarea></div>--%>
-
-<%--            <button class="btn" type="submit">Wyślij</button>--%>
-<%--        </form>--%>
-<%--    </div>--%>
-<%--    <div class="bottom-line">--%>
-<%--        <span class="bottom-line--copy">Copyright &copy; 2018</span>--%>
-<%--        <div class="bottom-line--icons">--%>
-<%--            <a href="#" class="btn btn--small"><img src="images/icon-facebook.svg"/></a> <a href="#"--%>
-<%--                                                                                            class="btn btn--small"><img--%>
-<%--                src="images/icon-instagram.svg"/></a>--%>
-<%--        </div>--%>
-<%--    </div>--%>
-<%--</footer>--%>
 
 <script src="<c:url value="resources/js/app.js"/>"></script>
 </body>

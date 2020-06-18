@@ -7,12 +7,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Title</title>
-</head>
-<body>
 
+<footer>
 <div class="contact">
     <h2>Skontaktuj się z nami</h2>
     <h3>Formularz kontaktowy</h3>
@@ -34,5 +30,4 @@
     </div>
 </div>
 </footer>
-</body>
-</html>
+

@@ -2,10 +2,13 @@ package pl.coderslab.charity.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import pl.coderslab.charity.entity.Donation;
 import pl.coderslab.charity.entity.Institution;
+import pl.coderslab.charity.fixture.InitDataFixture;
 import pl.coderslab.charity.service.DonationService;
 import pl.coderslab.charity.service.InstitutionService;
 
@@ -17,11 +20,13 @@ public class HomeController {
 
     private final InstitutionService institutionService;
     private final DonationService donationService;
+    private final InitDataFixture initDataFixture;
 
 
-    public HomeController(InstitutionService institutionService, DonationService donationService) {
+    public HomeController(InstitutionService institutionService, DonationService donationService, InitDataFixture initDataFixture) {
         this.institutionService = institutionService;
         this.donationService = donationService;
+        this.initDataFixture = initDataFixture;
     }
 
 
@@ -35,25 +40,24 @@ public class HomeController {
         return institutionService.findAll();
     }
 
-    @ModelAttribute("numberOfDonations")
-    public Integer numberOfDonations() {
-        Integer count = 0;
-        List<Donation> donationList = donationService.findAll();
-        for (int i = 0; i < donationList.size(); i++) {
-            count++;
-        }
-        return count;
+    @ModelAttribute("donations")
+    public List <Donation> numberOfDonations() {
+        List<Donation> donations = donationService.findAll();
+
+        return donations;
     }
 
-    @ModelAttribute("numberOfInstitutions")
-    public Integer numberOfInstitutions(){
-        Integer count = 0;
-        List <Institution> institutions = institutionService.findAll();
-        for (int i = 0; i <institutions.size() ; i++) {
-            count++;
+    @ModelAttribute("bags")
+    public Integer bags(){
+        Integer bags = donationService.sumOfBags();
+        return bags;
+    }
 
-        }
-        return count;
+    @GetMapping ("/initData")
+    @ResponseBody
+    public String create(){
+        this.initDataFixture.initInstitution();
+        return "done";
     }
 }
 

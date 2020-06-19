@@ -15,20 +15,7 @@
 <body>
 <header class="header--main-page">
     <jsp:include page="header.jsp"/>
-<%--    <nav class="container container--70">--%>
-<%--        <ul class="nav--actions">--%>
-<%--            <li><a href="" class="btn btn--small btn--without-border">Zaloguj</a></li>--%>
-<%--            <li><a href="#" class="btn btn--small btn--highlighted">Załóż konto</a></li>--%>
-<%--        </ul>--%>
 
-<%--        <ul>--%>
-<%--            <li><a href="#" class="btn btn--without-border active">Start</a></li>--%>
-<%--            <li><a href="#" class="btn btn--without-border">O co chodzi?</a></li>--%>
-<%--            <li><a href="#" class="btn btn--without-border">O nas</a></li>--%>
-<%--            <li><a href="#" class="btn btn--without-border">Fundacje i organizacje</a></li>--%>
-<%--            <li><a href="#" class="btn btn--without-border">Kontakt</a></li>--%>
-<%--        </ul>--%>
-<%--    </nav>--%>
 
     <div class="slogan container container--90">
         <div class="slogan--item">
@@ -43,15 +30,15 @@
 <section class="stats">
     <div class="container container--85">
         <div class="stats--item">
-            <em>13</em>
+            <em>${bags}</em>
 
-            <h3>Oddanych worków</h3>
+            <h3>Przekazanych worków</h3>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius est beatae, quod accusamus illum
                 tempora!</p>
         </div>
 
         <div class="stats--item">
-            <em>${numberOfDonations}</em>
+            <em>${donations.size()}</em>
             <h3>Przekazanych darów</h3>
             <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam magnam, sint nihil cupiditate quas
                 quam.</p>
@@ -122,7 +109,6 @@
             </li>
                 </c:if>
             </c:forEach>
-
 
         </ul>
     </div>

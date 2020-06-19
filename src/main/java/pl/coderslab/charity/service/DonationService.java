@@ -35,4 +35,8 @@ public class DonationService {
     public List<Donation> findAll (){
         return  donationRepository.findAll();
     }
+
+    public Integer sumOfBags (){
+        return donationRepository.sumOfBags();
+    }
 }

@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import pl.coderslab.charity.entity.Donation;
 import pl.coderslab.charity.entity.Institution;
 import pl.coderslab.charity.fixture.InitDataFixture;
@@ -57,6 +58,7 @@ public class HomeController {
     @ResponseBody
     public String create(){
         this.initDataFixture.initInstitution();
+        this.initDataFixture.initCategory();
         return "done";
     }
 }

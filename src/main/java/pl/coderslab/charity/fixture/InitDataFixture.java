@@ -1,20 +1,23 @@
 package pl.coderslab.charity.fixture;
 
 import org.springframework.stereotype.Service;
+import pl.coderslab.charity.entity.Category;
 import pl.coderslab.charity.entity.Donation;
 import pl.coderslab.charity.entity.Institution;
-import pl.coderslab.charity.service.DonationService;
+import pl.coderslab.charity.service.CategoryService;
 import pl.coderslab.charity.service.InstitutionService;
 
 @Service
 public class InitDataFixture {
 
-    private final DonationService donationService;
+    private final InstitutionService donationService;
     private final InstitutionService institutionService;
+    private final CategoryService categoryService;
 
-    public InitDataFixture(DonationService donationService, InstitutionService institutionService) {
+    public InitDataFixture(InstitutionService donationService, InstitutionService institutionService, CategoryService categoryService) {
         this.donationService = donationService;
         this.institutionService = institutionService;
+        this.categoryService = categoryService;
     }
 
     public void initInstitution() {
@@ -37,13 +40,22 @@ public class InitDataFixture {
         institutionService.save(institution4);
     }
 
-//    public void initDonation(){
-//        Donation donation = new Donation();
-//        Donation donation1 = new Donation();
-//        donation.setCity("Kraków");
-//        donation1.setCity("Warszawa");
-//        donation.setInstitution();
+
+    public void initCategory() {
+        Category category = new Category();
+        Category category2 = new Category();
+        Category category3 = new Category();
+        Category category4 = new Category();
+        category.setName("ubrania, które nadają się do ponownego użycia");
+        category2.setName("ubrania, do wyrzucenia");
+        category3.setName("zabawki");
+        category4.setName("inne");
+        categoryService.save(category);
+        categoryService.save(category2);
+        categoryService.save(category3);
+        categoryService.save(category4);
     }
+}
 
 
 

@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -20,25 +21,25 @@
 
 </header>
 
-<section class="stats">
-    <div class="container container--85">
-        <div class="stats--item">
-            <em>${bags}</em>
+<%--<section class="stats">--%>
+<%--    <div class="container container--85">--%>
+<%--        <div class="stats--item">--%>
+<%--            <em>${bags}</em>--%>
 
-            <h3>Przekazanych worków</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius est beatae, quod accusamus illum
-                tempora!</p>
-        </div>
+<%--            <h3>Przekazanych worków</h3>--%>
+<%--            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius est beatae, quod accusamus illum--%>
+<%--                tempora!</p>--%>
+<%--        </div>--%>
 
-        <div class="stats--item">
-            <em>${donations.size()}</em>
-            <h3>Przekazanych darów</h3>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam magnam, sint nihil cupiditate quas
-                quam.</p>
-        </div>
+<%--        <div class="stats--item">--%>
+<%--            <em>${donations.size()}</em>--%>
+<%--            <h3>Przekazanych darów</h3>--%>
+<%--            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam magnam, sint nihil cupiditate quas--%>
+<%--                quam.</p>--%>
+<%--        </div>--%>
 
-    </div>
-</section>
+<%--    </div>--%>
+<%--</section>--%>
 
 <section class="steps">
     <h2>Wystarczą 4 proste kroki</h2>
@@ -81,30 +82,55 @@
 </section>
 
 <section class="help">
-    <h2>Komu pomagamy?</h2>
+<form:form method="post" modelAttribute="donation" action="/form">
 
-    <!-- SLIDE 1 -->
-    <div class="help--slides active" data-id="1">
-        <p>W naszej bazie znajdziesz listę zweryfikowanych Fundacji, z którymi współpracujemy.
-            Możesz sprawdzić czym się zajmują.</p>
 
-        <ul class="help--slides-items">
-            <c:forEach items="${institutions}" var="institution" varStatus="count">
-                <c:if test="${count.count % 2 != 0}" >
-            <li>
-                </c:if>
-                <div class="col">
-                    <div class="title">Fundacja "${institution.name}"</div>
-                    <div class="subtitle">Cel i misja: ${institution.description}</div>
-                </div>
-                <c:if test="${count.count %2 == 0}">
+<div>
+    <li>
+        Zaznacz co chcesz oddać:
+        <c:forEach items="${categories}" var="category">
+<%--        <form:checkboxes path="categories"  items="${category.name}"/>--%>
+            <input type="checkbox" name="categories" value="${category.id}">${category.name}
+        </c:forEach>
+    </li>
+    <br>
 
-            </li>
-                </c:if>
-            </c:forEach>
-
-        </ul>
+</div>
+    <div>
+        <li>
+            Podaj liczbę 60l worków, w które spakowałeś/aś rzeczy:
+            <form:input path="quantity"/>
+        </li>
+        <br>
     </div>
+    <div>
+        Wybierz organizacje, której chcesz pomóc:
+        <c:forEach items="${institutions}" var="institution">
+            <input type="radio" name="institution" value="${institution.id}"> ${institution.name}
+<%--        <form:select path="institution" items="${institutions}"/>--%>
+        </c:forEach>
+        <br>
+    </div>
+    <div>
+        Podaj adres oraz termin odbioru rzeczy przez kuriera:
+        <li>
+        <form:input path="street" />
+        <form:input path="city"/>
+        <form:input path="zipCode" />
+            <br>
+        </li>
+        <li>
+        <form:textarea path="pickUpComment"/>
+        <form:input type="date" path="pickUpDate"/>
+        <form:input type="time" path="pickUpTime" />
+            <br>
+        </li>
+
+    </div>
+    <input type="submit">
+</form:form>
+
+
 
 </section>
 

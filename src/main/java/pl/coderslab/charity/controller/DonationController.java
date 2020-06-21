@@ -44,7 +44,7 @@ public class DonationController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "redirect:/";
+        return "formConf";
     }
 
 

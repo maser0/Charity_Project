@@ -164,6 +164,34 @@ document.addEventListener("DOMContentLoaded", function() {
       this.$step.parentElement.hidden = this.currentStep >= 5;
 
       // TODO: get data from inputs and show them in summary
+
+      let quantity = document.getElementById('quantity').value;
+      let institution = document.querySelector('input[name=organization]:checked').value;
+      console.log(institution)
+      let street = document.getElementById('street').value;
+      let city = document.getElementById('city').value;
+      let zipCode = document.getElementById('zipCode').value;
+      let pickUpDate = document.getElementById('pickUpDate').value;
+      let pickUpTime = document.getElementById('pickUpTime').value;
+      let pickupComment = document.getElementById('pickUpComment').value;
+      let categories =   document.querySelector('input[name=categories]:checked').value;
+          // document.querySelectorAll('input:checked').values();
+
+
+          // $('input[name=categories]:checked');
+
+      document.getElementById('bags').innerText = quantity + " worki " + categories ;
+      document.getElementById('institutionSum').innerText = institution;
+      document.getElementById('streetSum').innerText = street;
+      document.getElementById('citySum').innerText = city;
+      document.getElementById('zipCodeSum').innerText = zipCode;
+      document.getElementById('dateSum').innerText = pickUpDate;
+      document.getElementById('timeSum').innerText = pickUpTime;
+      document.getElementById('commentSum').innerText = pickupComment;
+      // document.getElementById("xxx").innerText = categories;
+
+
+
     }
 
   }

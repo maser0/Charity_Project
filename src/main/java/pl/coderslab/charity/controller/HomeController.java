@@ -61,6 +61,16 @@ public class HomeController {
         this.initDataFixture.initCategory();
         return "done";
     }
+
+    @GetMapping("/login")
+    public String log(){
+        return "login";
+    }
+
+    @GetMapping("/logout")
+    public String logoff(){
+        return "logout";
+    }
 }
 
 

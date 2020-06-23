@@ -2,14 +2,13 @@ package pl.coderslab.charity.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import pl.coderslab.charity.entity.Donation;
 import pl.coderslab.charity.entity.Institution;
+import pl.coderslab.charity.entity.User;
 import pl.coderslab.charity.fixture.InitDataFixture;
+import pl.coderslab.charity.interfaces.UserService;
 import pl.coderslab.charity.service.DonationService;
 import pl.coderslab.charity.service.InstitutionService;
 
@@ -22,12 +21,14 @@ public class HomeController {
     private final InstitutionService institutionService;
     private final DonationService donationService;
     private final InitDataFixture initDataFixture;
+    private final UserService userService;
 
 
-    public HomeController(InstitutionService institutionService, DonationService donationService, InitDataFixture initDataFixture) {
+    public HomeController(InstitutionService institutionService, DonationService donationService, InitDataFixture initDataFixture, UserService userService) {
         this.institutionService = institutionService;
         this.donationService = donationService;
         this.initDataFixture = initDataFixture;
+        this.userService = userService;
     }
 
 
@@ -59,9 +60,36 @@ public class HomeController {
     public String create(){
         this.initDataFixture.initInstitution();
         this.initDataFixture.initCategory();
+        this.initDataFixture.initRoles();
+        this.initDataFixture.initUsers();
+
         return "done";
     }
+
+    @GetMapping("/login")
+    public String log(){
+        return "login";
+    }
+
+    @GetMapping("/logout")
+    public String logoff(){
+        return "logout";
+    }
+
+    @GetMapping("/register")
+    public String reg(){
+        return "register";
+    }
+
+    @PostMapping("/register")
+    @ResponseBody
+    public String post(@ModelAttribute User user){
+        userService.saveUser(user);
+        return "done";
+    }
+
 }
+
 
 
 

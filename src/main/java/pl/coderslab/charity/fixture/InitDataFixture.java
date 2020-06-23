@@ -1,11 +1,18 @@
 package pl.coderslab.charity.fixture;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.coderslab.charity.entity.Category;
-import pl.coderslab.charity.entity.Donation;
 import pl.coderslab.charity.entity.Institution;
+import pl.coderslab.charity.entity.Role;
+import pl.coderslab.charity.entity.User;
+import pl.coderslab.charity.interfaces.RoleService;
+import pl.coderslab.charity.interfaces.UserService;
 import pl.coderslab.charity.service.CategoryService;
 import pl.coderslab.charity.service.InstitutionService;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Service
 public class InitDataFixture {
@@ -13,11 +20,17 @@ public class InitDataFixture {
     private final InstitutionService donationService;
     private final InstitutionService institutionService;
     private final CategoryService categoryService;
+    private final UserService userService;
+    private final RoleService roleService;
 
-    public InitDataFixture(InstitutionService donationService, InstitutionService institutionService, CategoryService categoryService) {
+    @Autowired
+    public InitDataFixture(InstitutionService donationService, InstitutionService institutionService,
+                           CategoryService categoryService, UserService userService, RoleService roleService) {
         this.donationService = donationService;
         this.institutionService = institutionService;
         this.categoryService = categoryService;
+        this.userService = userService;
+        this.roleService = roleService;
     }
 
     public void initInstitution() {
@@ -54,6 +67,40 @@ public class InitDataFixture {
         categoryService.save(category2);
         categoryService.save(category3);
         categoryService.save(category4);
+    }
+
+    public void initRoles() {
+        Role roleAdmin = new Role();
+        roleAdmin.setName("ROLE_ADMIN");
+        roleService.save(roleAdmin);
+
+        Role roleUser = new Role();
+        roleUser.setName("ROLE_USER");
+        roleService.save(roleUser);
+    }
+
+    public void initUsers() {
+
+        Set<Role> adminRoles = new HashSet<>();
+        adminRoles.add(roleService.findOneByName("ROLE_ADMIN"));
+
+        User admin = new User();
+        admin.setUsername("admin");
+        admin.setPassword("admin");
+        admin.setRoles(adminRoles);
+        userService.saveUser(admin);
+
+        Set<Role> userRoles = new HashSet<>();
+        userRoles.add(roleService.findOneByName("ROLE_USER"));
+
+        User user = new User();
+        user.setUsername("user@com.pl");
+        user.setPassword("user");
+        user.setRoles(userRoles);
+
+        userService.saveUser(user);
+
+        user.getRoles().forEach(e -> System.out.println(e.getName()));
     }
 }
 

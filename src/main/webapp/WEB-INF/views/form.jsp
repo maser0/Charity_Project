@@ -17,7 +17,7 @@
         <ul class="nav--actions">
             <li class="logged-user">
                 <sec:authorize access="isAuthenticated()">
-                    Witaj <sec:authentication property="username"/>
+                    Witaj <sec:authentication property="principal.username"/>
                 </sec:authorize>
                 <ul class="dropdown">
                     <li><a href="#">Profil</a></li>

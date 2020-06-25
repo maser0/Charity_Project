@@ -8,15 +8,16 @@ import pl.coderslab.charity.Model.CurrentUser;
 import pl.coderslab.charity.entity.Institution;
 import pl.coderslab.charity.entity.User;
 import pl.coderslab.charity.interfaces.UserService;
+import pl.coderslab.charity.service.UserServiceImpl;
 
 @Controller
 public class UserController {
-    private final UserService userService;
-    private final pl.coderslab.charity.service.UserService userServ;
+    private final UserServiceImpl userService;
 
-    public UserController(UserService userService, pl.coderslab.charity.service.UserService userServ) {
+
+    public UserController(UserServiceImpl userService) {
         this.userService = userService;
-        this.userServ = userServ;
+
     }
 
     @GetMapping("/create-user")
@@ -54,13 +55,13 @@ public class UserController {
 
     @GetMapping("/user/list")
     public String inst(Model model) {
-        model.addAttribute("users", userServ.findAll());
+        model.addAttribute("users", userService.findAll());
         return "userList";
     }
 
     @GetMapping("/user/{id}")
     public String edit(@PathVariable long id, Model model){
-        User user = userServ.read(id);
+        User user = userService.read(id);
         model.addAttribute("user", user);
         return "register";
     }
@@ -71,10 +72,10 @@ public class UserController {
 //        return "register";
 //    }
 
-    @GetMapping("user/delete/{id}")
-    public String delete(@PathVariable long id) {
-        User userToDelete = userServ.read(id);
-        userServ.delete(userToDelete);
+    @GetMapping("user/enabled/{id}")
+    public String disable(@PathVariable long id) {
+        User userToDisable = userService.read(id);
+        userService.disable(userToDisable);
         return "redirect:/user/list";
     }
 

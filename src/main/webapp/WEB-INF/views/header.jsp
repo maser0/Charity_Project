@@ -18,7 +18,7 @@
         <sec:authorize access="isAuthenticated()">
             Witaj <sec:authentication property="principal.username"/>
             <ul class="dropdown">
-                <li><a href="#">Profil</a></li>
+                <li><a href="/user">Profil</a></li>
                 <li><a href="#">Moje zbiórki</a></li>
                 <li><a href="/logout">Wyloguj</a></li>
             </ul>
@@ -34,7 +34,7 @@
         <li><a href="#" class="btn btn--without-border">Administratorzy</a></li>
         <li><a href="/admin/user/list" class="btn btn--without-border">Użytkownicy</a></li>
         <li><a href="#" class="btn btn--without-border">Dary</a></li>
-<%--        <li><a href="/admin/view" class="btn btn--without-border">Strona Administratora</a></li>--%>
+        <li><a href="/admin/list" class="btn btn--without-border">Administratorzy</a></li>
             </sec:authorize>
         <li><a href="/form" class="btn btn--without-border">Przekaż dary</a></li>
         <li><a href="#" class="btn btn--without-border">Kontakt</a></li>

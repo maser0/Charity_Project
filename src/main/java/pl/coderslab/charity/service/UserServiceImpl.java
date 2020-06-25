@@ -7,6 +7,7 @@ import pl.coderslab.charity.interfaces.UserService;
 import pl.coderslab.charity.repository.RoleRepository;
 import pl.coderslab.charity.repository.UserRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -52,6 +53,14 @@ public class UserServiceImpl implements UserService {
     }
 
     public List<User> findAll (){
+//        List <User> userAll = userRepository.findAll();
+//        List <User> usersOnly = new ArrayList<>();
+//        for (User user : userAll) {
+//            if( user.getRoles().contains("User")){
+//                usersOnly.add(user);
+//            }
+//        }
+
         return  userRepository.findAll();
     }
 

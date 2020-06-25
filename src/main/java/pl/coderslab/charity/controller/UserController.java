@@ -55,6 +55,7 @@ public class UserController {
 
     @GetMapping("/admin/user/list")
     public String inst(Model model) {
+
         model.addAttribute("users", userService.findAll());
         return "userList";
     }
@@ -72,6 +73,14 @@ public class UserController {
         User userToDisable = userService.read(id);
         userService.disable(userToDisable);
         return "redirect:/admin/user/list";
+    }
+
+    @GetMapping("/user")
+    public String profile(@AuthenticationPrincipal CurrentUser customUser, Model model){
+        User entityUser = customUser.getUser();
+        User user = userService.read(entityUser.getId());
+        model.addAttribute("user", user);
+        return "register";
     }
 
 

@@ -1,3 +1,4 @@
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: Witek
@@ -11,13 +12,24 @@
     <ul class="nav--actions">
         <li><a href="/login" class="btn btn--small btn--without-border">Zaloguj</a></li>
         <li><a href="/register" class="btn btn--small btn--highlighted">Załóż konto</a></li>
-    </ul>
 
+    </ul>
     <ul>
-        <li><a href="#" class="btn btn--without-border active">Start</a></li>
+        <sec:authorize access="isAuthenticated()">
+            Witaj <sec:authentication property="principal.username"/>
+        </sec:authorize>
+    </ul>
+    <ul>
+        <li><a href="/" class="btn btn--without-border active">Start</a></li>
         <li><a href="#" class="btn btn--without-border">O co chodzi?</a></li>
         <li><a href="#" class="btn btn--without-border">O nas</a></li>
-        <li><a href="#" class="btn btn--without-border">Fundacje i organizacje</a></li>
+<%--        <sec:authorize access="hasRole('ADMIN')">--%>
+        <li><a href="/institution/list" class="btn btn--without-border">Fundacje i organizacje</a></li>
+        <li><a href="#" class="btn btn--without-border">Administratorzy</a></li>
+        <li><a href="/user/list" class="btn btn--without-border">Użytkownicy</a></li>
+        <li><a href="#" class="btn btn--without-border">Dary</a></li>
+        <li><a href="/view" class="btn btn--without-border">Strona Administratora</a></li>
+<%--            </sec:authorize>--%>
         <li><a href="/form" class="btn btn--without-border">Przekaż dary</a></li>
         <li><a href="#" class="btn btn--without-border">Kontakt</a></li>
     </ul>

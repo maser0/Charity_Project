@@ -1,6 +1,7 @@
 package pl.coderslab.charity.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -10,6 +11,7 @@ import pl.coderslab.charity.Model.CurrentUser;
 import pl.coderslab.charity.entity.User;
 import pl.coderslab.charity.interfaces.UserService;
 
+import javax.security.auth.login.AccountLockedException;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -26,6 +28,10 @@ public class SpringDataUserDetailsService implements UserDetailsService {
         User user = userService.findByUserName(username);
         if (user == null) {
             throw new UsernameNotFoundException(username);
+        }
+        if(user.getEnabled() == 0) {
+            throw new DisabledException("Użytkownik zablokowany");
+
         }
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
         user.getRoles().forEach(r -> grantedAuthorities.add(new SimpleGrantedAuthority(r.getName())));

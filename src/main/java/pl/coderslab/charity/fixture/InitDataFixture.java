@@ -85,8 +85,10 @@ public class InitDataFixture {
         adminRoles.add(roleService.findOneByName("ROLE_ADMIN"));
 
         User admin = new User();
-        admin.setUsername("admin");
+        admin.setUsername("admin@com.pl");
         admin.setPassword("admin");
+        admin.setFirstName("Zbigniew");
+        admin.setSurname("Stonoga");
         admin.setRoles(adminRoles);
         userService.saveUser(admin);
 
@@ -96,6 +98,8 @@ public class InitDataFixture {
         User user = new User();
         user.setUsername("user@com.pl");
         user.setPassword("user");
+        user.setFirstName("Adam");
+        user.setSurname("Bak");
         user.setRoles(userRoles);
 
         userService.saveUser(user);

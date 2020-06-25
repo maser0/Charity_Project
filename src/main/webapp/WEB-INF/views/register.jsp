@@ -37,26 +37,38 @@
 
 <section class="login-page">
 <h2>Załóż konto</h2>
-<form:form method="post" modelAttribute="user">
+<form:form method="post" modelAttribute="user" action="/register">
     <form:hidden path="id"/>
     <div class="form-group">
 
-    <%--            <input type="email" name="email" placeholder="Email" />--%>
-    <form:input path="username"/>
+
+    <form:input path="username" placeholder="Email"/>
     <form:errors path="username"/>
     </div>
     <div class="form-group">
-<%--    <input type="password" name="password" placeholder="Hasło" />--%>
-    <form:input path="password"/>
+
+
+        <form:input path="firstName" placeholder="Imię"/>
+        <form:errors path="firstName"/>
+    </div>
+    <div class="form-group">
+
+
+        <form:input path="surname" placeholder="Nazwisko"/>
+        <form:errors path="surname"/>
+    </div>
+    <div class="form-group">
+
+    <form:input path="password" placeholder="Hasło" type="password"/>
     <form:errors path="password"/>
     </div>
     <div class="form-group">
-<%--    <input type="password" name="password2" placeholder="Powtórz hasło" />--%>
+
     </div>
 
     <div class="form-group form-group--buttons">
     <a href="login.html" class="btn btn--without-border">Zaloguj się</a>
-    <button class="btn" type="submit">Załóż konto</button>
+    <button class="btn" type="submit">Zatwierdź</button>
     </div>
 </form:form>
     </section>

@@ -174,13 +174,17 @@ document.addEventListener("DOMContentLoaded", function() {
       let pickUpDate = document.getElementById('pickUpDate').value;
       let pickUpTime = document.getElementById('pickUpTime').value;
       let pickupComment = document.getElementById('pickUpComment').value;
-      let categories =   document.querySelector('input[name=categories]:checked').value;
-          // document.querySelectorAll('input:checked').values();
+      let categories =   document.querySelectorAll('input[name=categories]:checked');
+      let categoriesFinal = categories.nextElementSibling.nextElementSibling;
+      // console.log(categoriesFinal)
+
+      // let categoriesFinal = document.querySelector('div#test :checked');
+      console.log(categoriesFinal.innerText)
 
 
-          // $('input[name=categories]:checked');
 
-      document.getElementById('bags').innerText = quantity + " worki " + categories ;
+
+      document.getElementById('bags').innerText = quantity + " worki " + categoriesFinal.innerText ;
       document.getElementById('institutionSum').innerText = institutionFinal.innerText;
       document.getElementById('streetSum').innerText = street;
       document.getElementById('citySum').innerText = city;

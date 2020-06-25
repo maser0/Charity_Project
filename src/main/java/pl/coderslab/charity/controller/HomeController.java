@@ -76,17 +76,7 @@ public class HomeController {
         return "logout";
     }
 
-    @GetMapping("/register")
-    public String reg(){
-        return "register";
-    }
 
-    @PostMapping("/register")
-    @ResponseBody
-    public String post(@ModelAttribute User user){
-        userService.saveUser(user);
-        return "done";
-    }
 
 }
 

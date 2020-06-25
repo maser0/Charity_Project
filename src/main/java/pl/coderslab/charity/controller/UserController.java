@@ -53,30 +53,25 @@ public class UserController {
     }
 
 
-    @GetMapping("/user/list")
+    @GetMapping("/admin/user/list")
     public String inst(Model model) {
         model.addAttribute("users", userService.findAll());
         return "userList";
     }
 
-    @GetMapping("/user/{id}")
+    @GetMapping("/admin/user/{id}")
     public String edit(@PathVariable long id, Model model){
         User user = userService.read(id);
         model.addAttribute("user", user);
         return "register";
     }
-//
-//    @GetMapping ("/user/create")
-//    public String create(Model model){
-//        model.addAttribute("user", new User());
-//        return "register";
-//    }
 
-    @GetMapping("user/enabled/{id}")
+
+    @GetMapping("/admin/user/enabled/{id}")
     public String disable(@PathVariable long id) {
         User userToDisable = userService.read(id);
         userService.disable(userToDisable);
-        return "redirect:/user/list";
+        return "redirect:/admin/user/list";
     }
 
 

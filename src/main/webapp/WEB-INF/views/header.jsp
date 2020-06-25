@@ -30,11 +30,11 @@
         <li><a href="#" class="btn btn--without-border">O co chodzi?</a></li>
         <li><a href="#" class="btn btn--without-border">O nas</a></li>
         <sec:authorize access="hasRole('ADMIN')">
-        <li><a href="/institution/list" class="btn btn--without-border">Fundacje i organizacje</a></li>
+        <li><a href="/admin/institution/list" class="btn btn--without-border">Fundacje i organizacje</a></li>
         <li><a href="#" class="btn btn--without-border">Administratorzy</a></li>
-        <li><a href="/user/list" class="btn btn--without-border">Użytkownicy</a></li>
+        <li><a href="/admin/user/list" class="btn btn--without-border">Użytkownicy</a></li>
         <li><a href="#" class="btn btn--without-border">Dary</a></li>
-        <li><a href="/view" class="btn btn--without-border">Strona Administratora</a></li>
+<%--        <li><a href="/admin/view" class="btn btn--without-border">Strona Administratora</a></li>--%>
             </sec:authorize>
         <li><a href="/form" class="btn btn--without-border">Przekaż dary</a></li>
         <li><a href="#" class="btn btn--without-border">Kontakt</a></li>

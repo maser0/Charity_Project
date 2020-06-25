@@ -22,19 +22,19 @@ public class InstitutionController {
         this.institutionService = institutionService;
     }
 
-    @GetMapping("/view")   // tutaj wylaczam admin zeby narazie pracowac dalej
-      public String adm(){
-      return "adminView";
-  }
+//    @GetMapping("/admin/view")
+//      public String adm(){
+//      return "adminView";
+//  }
 
-  @GetMapping("/institution/list")  // tutaj wylaczam admin zeby narazie pracowac dalej
+  @GetMapping("/admin/institution/list")
     public String inst(Model model){
         model.addAttribute("institutions", institutionService.findAll());
         return "institutionList";
 
   }
 
-    @GetMapping("/institution/{id}")
+    @GetMapping("/admin/institution/{id}")
     public String edit(@PathVariable long id, Model model){
         Institution institution = institutionService.read(id);
         model.addAttribute("institution", institution);
@@ -42,7 +42,7 @@ public class InstitutionController {
     }
 
 
-    @PostMapping ("/institution/post")
+    @PostMapping ("/admin/institution/post")
     public String post (@Valid @ModelAttribute Institution institution, BindingResult bindingResult){
         if (bindingResult.hasErrors()) {
             return "institutionCreate";
@@ -52,21 +52,21 @@ public class InstitutionController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "redirect:/institution/list";
+        return "redirect:/admin/institution/list";
     }
 
-    @GetMapping ("institution/create")
+    @GetMapping ("/admin/institution/create")
     public String create(Model model){
         model.addAttribute("institution", new Institution());
         return "institutionCreate";
     }
 
-    @GetMapping("institution/delete/{id}")
+    @GetMapping("/admin/institution/delete/{id}")
 
     public String delete(@PathVariable long id) {
         Institution institutionToDelete = institutionService.read(id);
         institutionService.delete(institutionToDelete);
-        return "redirect:/institution/list";
+        return "redirect:/admin/institution/list";
     }
 
 

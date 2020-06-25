@@ -48,6 +48,7 @@ public class UserServiceImpl implements UserService {
     public void disable (User user){
         User userToDisable = userRepository.getOne(user.getId());
           userToDisable.setEnabled(0);
+          userRepository.save(userToDisable);
     }
 
     public List<User> findAll (){

@@ -21,44 +21,7 @@
 <header class="header--main-page">
     <jsp:include page="header.jsp"/>
 
-<%--<TABLE>--%>
-<%--    <TR>--%>
-<%--        <TH>Nazwa</TH>--%>
-<%--        <th>opis</th>--%>
-<%--    </TR>--%>
-<%--    <c:forEach items="${institutions}" var="institutions">--%>
-<%--        <tr>--%>
-<%--            <td>--%>
-<%--                ${institutions.name}--%>
-<%--            </td>--%>
-<%--            <td>--%>
-<%--                ${institutions.description}--%>
-<%--            </td>--%>
-<%--        </tr>--%>
-<%--    </c:forEach>--%>
-<%--</TABLE>--%>
-
 </header>
-
-<%--<section class="stats">--%>
-<%--    <div class="container container--85">--%>
-<%--        <div class="stats--item">--%>
-<%--            <em>${bags}</em>--%>
-
-<%--            <h3>Przekazanych worków</h3>--%>
-<%--            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius est beatae, quod accusamus illum--%>
-<%--                tempora!</p>--%>
-<%--        </div>--%>
-
-<%--        <div class="stats--item">--%>
-<%--            <em>${donations.size()}</em>--%>
-<%--            <h3>Przekazanych darów</h3>--%>
-<%--            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam magnam, sint nihil cupiditate quas--%>
-<%--                quam.</p>--%>
-<%--        </div>--%>
-
-<%--    </div>--%>
-<%--</section>--%>
 
 <section class="steps">
     <h2>Wystarczą 4 proste kroki</h2>
@@ -96,7 +59,7 @@
             optio esse quisquam illo omnis.</p>
         <img src="<c:url value="resources/images/signature.svg"/>" class="about-us--text-signature" alt="Signature"/>
     </div>
-    <div class="about-us--image"><img src="<c:url value="resources/images/about-us.jpg"/>" alt="People in circle"/>
+    <div class="about-us--image"><img src="<c:url value="/resources/images/about-us.jpg"/>" alt="People in circle"/>
     </div>
 </section>
 
@@ -107,7 +70,7 @@
     <div class="help--slides active" data-id="1">
         <p>W naszej bazie znajdziesz listę zweryfikowanych Fundacji, z którymi współpracujemy.
             Możesz sprawdzić czym się zajmują.</p>
-        <a class="btn btn--without-border" href="/institution/create">Dodaj nową fundacje</a>
+        <a class="btn btn--without-border" href="/admin/institution/create">Dodaj nową fundacje</a>
 
         <ul class="help--slides-items">
             <c:forEach items="${institutions}" var="institution" varStatus="count">
@@ -118,9 +81,9 @@
                     <div class="title">Fundacja "${institution.name}"</div>
                     <div class="subtitle">Cel i misja: ${institution.description}</div>
                     <div>
-                        <a class="btn btn--without-border" href="/institution/${institution.id}">Edytuj</a>
-                        <a class="btn btn--without-border" href="/institution/delete/${institution.id}">Usuń</a>
-<%--                        tu dac admin w linku --%>
+                        <a class="btn btn--without-border" href="/admin/institution/${institution.id}">Edytuj</a>
+                        <a class="btn btn--without-border" href="/admin/institution/delete/${institution.id}">Usuń</a>
+
                     </div>
 
                 </div>

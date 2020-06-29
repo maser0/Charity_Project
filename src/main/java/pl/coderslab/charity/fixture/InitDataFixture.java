@@ -1,5 +1,6 @@
 package pl.coderslab.charity.fixture;
 
+import com.sun.xml.bind.v2.TODO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.coderslab.charity.entity.Category;
@@ -105,6 +106,8 @@ public class InitDataFixture {
         userService.saveUser(user);
 
         user.getRoles().forEach(e -> System.out.println(e.getName()));
+
+        //TODO: init donation zobaczyc jak robic todo
     }
 }
 

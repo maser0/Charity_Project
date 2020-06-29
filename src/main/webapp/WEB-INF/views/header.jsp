@@ -36,7 +36,10 @@
         <li><a href="#" class="btn btn--without-border">Dary</a></li>
         <li><a href="/admin/list" class="btn btn--without-border">Administratorzy</a></li>
             </sec:authorize>
+        <sec:authorize access="hasAnyRole('USER', 'ADMIN')">
         <li><a href="/form" class="btn btn--without-border">Przekaż dary</a></li>
+        <li><a href="/donation/user" class="btn btn--without-border">Moje Dary</a></li>
+        </sec:authorize>
         <li><a href="#" class="btn btn--without-border">Kontakt</a></li>
     </ul>
 </nav>

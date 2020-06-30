@@ -176,7 +176,9 @@ document.addEventListener("DOMContentLoaded", function() {
       let pickupComment = document.getElementById('pickUpComment').value;
       let categories =   document.querySelectorAll('input[name=categories]:checked');
       let categoriesFinal = categories.nextElementSibling.nextElementSibling;
-      // console.log(categoriesFinal)
+      for (var i = 0; i <categories.length ; i++) {
+          console.log(categories.value)
+      }
 
       // let categoriesFinal = document.querySelector('div#test :checked');
       console.log(categoriesFinal.innerText)

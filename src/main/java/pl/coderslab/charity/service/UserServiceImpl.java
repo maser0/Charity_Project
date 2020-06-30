@@ -9,6 +9,7 @@ import pl.coderslab.charity.repository.UserRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -37,32 +38,42 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
     }
 
-    public void edit (User user){
+    public void edit(User user) {
         User userToEdit = userRepository.getOne(user.getId());
         userRepository.save(userToEdit);
     }
-    public User read (Long id){
-        return  userRepository.getOne(id);
+
+    public User read(Long id) {
+        return userRepository.getOne(id);
 
     }
 
-    public void disable (User user){
+    public void disable(User user) {
         User userToDisable = userRepository.getOne(user.getId());
-          userToDisable.setEnabled(0);
-          userRepository.save(userToDisable);
+        userToDisable.setEnabled(0);
+        userRepository.save(userToDisable);
     }
 
-    public List<User> findAll (){
-//        List <User> userAll = userRepository.findAll();
-//        List <User> usersOnly = new ArrayList<>();
-//        for (User user : userAll) {
-//            if( user.getRoles().contains("User")){
-//                usersOnly.add(user);
-//            }
-//        }
+    public List<User> findAllUsers() {
+        return userRepository.findAll().stream()
+                .filter(user -> user.getRoles().stream()
+                        .anyMatch(role -> role.getName().equals("ROLE_USER")))
+                .collect(Collectors.toList());
 
+    }
+
+    public List<User> findAllAdmins() {
+        return userRepository.findAll().stream()
+                .filter(user -> user.getRoles().stream()
+                        .anyMatch(role -> role.getName().equals("ROLE_ADMIN")))
+                .collect(Collectors.toList());
+
+    }
+
+    public List<User> findAll() {
         return  userRepository.findAll();
     }
+
 
 
 }

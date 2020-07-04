@@ -31,7 +31,7 @@
         <li><a href="#" class="btn btn--without-border">O nas</a></li>
         <sec:authorize access="hasRole('ADMIN')">
         <li><a href="/admin/institution/list" class="btn btn--without-border">Fundacje i organizacje</a></li>
-        <li><a href="#" class="btn btn--without-border">Administratorzy</a></li>
+<%--        <li><a href="#" class="btn btn--without-border">Administratorzy</a></li>--%>
         <li><a href="/admin/user/list" class="btn btn--without-border">Użytkownicy</a></li>
         <li><a href="#" class="btn btn--without-border">Dary</a></li>
         <li><a href="/admin/list" class="btn btn--without-border">Administratorzy</a></li>

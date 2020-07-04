@@ -9,38 +9,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <title>Document</title>
-    <link rel="stylesheet" href="<c:url value="resources/css/style.css"/>"/>
+    <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>"/>
 </head>
 <body>
 <header class="header--form-page">
     <jsp:include page="header.jsp"/>
 
-    <div class="slogan container container--90">
-        <div class="slogan--item">
-            <h1>
-                Oddaj rzeczy, których już nie chcesz<br/>
-                <span class="uppercase">potrzebującym</span>
-            </h1>
+<%--    <div class="slogan container container--90">--%>
+<%--        <div class="slogan--item">--%>
+<%--            <h1>--%>
+<%--                Oddaj rzeczy, których już nie chcesz<br/>--%>
+<%--                <span class="uppercase">potrzebującym</span>--%>
+<%--            </h1>--%>
 
-            <div class="slogan--steps">
-                <div class="slogan--steps-title">Wystarczą 4 proste kroki:</div>
-                <ul class="slogan--steps-boxes">
-                    <li>
-                        <div><em>1</em><span>Wybierz rzeczy</span></div>
-                    </li>
-                    <li>
-                        <div><em>2</em><span>Spakuj je w worki</span></div>
-                    </li>
-                    <li>
-                        <div><em>3</em><span>Wybierz fundację</span></div>
-                    </li>
-                    <li>
-                        <div><em>4</em><span>Zamów kuriera</span></div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
+<%--            <div class="slogan--steps">--%>
+<%--                <div class="slogan--steps-title">Wystarczą 4 proste kroki:</div>--%>
+<%--                <ul class="slogan--steps-boxes">--%>
+<%--                    <li>--%>
+<%--                        <div><em>1</em><span>Wybierz rzeczy</span></div>--%>
+<%--                    </li>--%>
+<%--                    <li>--%>
+<%--                        <div><em>2</em><span>Spakuj je w worki</span></div>--%>
+<%--                    </li>--%>
+<%--                    <li>--%>
+<%--                        <div><em>3</em><span>Wybierz fundację</span></div>--%>
+<%--                    </li>--%>
+<%--                    <li>--%>
+<%--                        <div><em>4</em><span>Zamów kuriera</span></div>--%>
+<%--                    </li>--%>
+<%--                </ul>--%>
+<%--            </div>--%>
+<%--        </div>--%>
+<%--    </div>--%>
 </header>
 
 <section class="form--steps">
@@ -71,7 +71,7 @@
             <div data-step="1" class="active" id="test">
                 <h3>Zaznacz co chcesz oddać:</h3>
                 <c:forEach items="${categories}" var="category">
-                    <div class="form-group form-group--checkbox" >
+                    <div class="form-group form-group--checkbox">
                         <label>
                             <input
                                     id="${category.id}"
@@ -118,10 +118,10 @@
                 <c:forEach items="${institutions}" var="institution">
                     <div class="form-group form-group--checkbox">
                         <label>
-                            <input type="radio" name="organization" value="${institution.id}"/>
+                            <input type="radio" name="organization"  id="institutionX" value="${institution.id}"/>
                             <span class="checkbox radio"></span>
                             <span class="description">
-                  <div class="title" id="institutionX">${institution.name}</div>
+                  <div class="title" >${institution.name}</div>
                   <div class="subtitle">
                           ${institution.description}
                   </div>

@@ -47,7 +47,7 @@
                 <div class="col">
                     <div class="title">Użytkownik "${user.username}"</div>
                     <div class="subtitle">Imię: ${user.firstName}</div>
-                    <div class="subtitle">Nazwisko ${user.surname}</div>
+                    <div class="subtitle">Nazwisko: ${user.surname}</div>
                     <div>
                         <a class="btn btn--without-border" href="/admin/user/${user.id}">Edytuj</a>
                         <a class="btn btn--without-border" href="/admin/user/enabled/${user.id}">Zablokuj</a>

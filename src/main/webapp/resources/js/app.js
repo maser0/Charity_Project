@@ -166,8 +166,6 @@ document.addEventListener("DOMContentLoaded", function() {
       // TODO: get data from inputs and show them in summary
 
       let quantity = document.getElementById('quantity').value;
-      let institution = document.querySelector('input[name=organization]:checked');
-      let institutionFinal = institution.nextElementSibling.nextElementSibling;
       let street = document.getElementById('street').value;
       let city = document.getElementById('city').value;
       let zipCode = document.getElementById('zipCode').value;
@@ -175,19 +173,20 @@ document.addEventListener("DOMContentLoaded", function() {
       let pickUpTime = document.getElementById('pickUpTime').value;
       let pickupComment = document.getElementById('pickUpComment').value;
       let categories =   document.querySelectorAll('input[name=categories]:checked');
-      let categoriesFinal = categories.nextElementSibling.nextElementSibling;
+      let institution = document.querySelector('input[name=organization]:checked');
+
+      console.log(institution);
+      // let institutionFinal = institution.nextElementSibling.nextElementSibling;
+      var catFinal="";
       for (var i = 0; i <categories.length ; i++) {
-          console.log(categories.value)
+          catFinal+=((categories[i].nextElementSibling.nextElementSibling.innerHTML)) + ", ";
+
+
       }
+      console.log(catFinal)
 
-      // let categoriesFinal = document.querySelector('div#test :checked');
-      console.log(categoriesFinal.innerText)
-
-
-
-
-      document.getElementById('bags').innerText = quantity + " worki " + categoriesFinal.innerText ;
-      document.getElementById('institutionSum').innerText = institutionFinal.innerText;
+      document.getElementById('bags').innerText = quantity + " worki " + catFinal ;
+      // document.getElementById('institutionSum').innerText = institutionFinal.innerText;
       document.getElementById('streetSum').innerText = street;
       document.getElementById('citySum').innerText = city;
       document.getElementById('zipCodeSum').innerText = zipCode;

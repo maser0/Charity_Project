@@ -4,10 +4,8 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import pl.coderslab.charity.Model.CurrentUser;
-import pl.coderslab.charity.entity.Institution;
+import pl.coderslab.charity.model.CurrentUser;
 import pl.coderslab.charity.entity.User;
-import pl.coderslab.charity.interfaces.UserService;
 import pl.coderslab.charity.service.UserServiceImpl;
 
 @Controller

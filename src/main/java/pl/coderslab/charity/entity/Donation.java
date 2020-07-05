@@ -14,7 +14,7 @@ public class Donation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Integer quantity;
-    @OneToMany
+    @ManyToMany
     List <Category> categories = new ArrayList<>();
     @ManyToOne
     private Institution institution;

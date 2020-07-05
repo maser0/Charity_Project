@@ -1,4 +1,4 @@
-package pl.coderslab.charity.Model;
+package pl.coderslab.charity.model;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;

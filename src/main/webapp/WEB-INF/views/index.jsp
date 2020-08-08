@@ -17,7 +17,6 @@
     <jsp:include page="header.jsp"/>
 
 
-
 </header>
 
 <section class="stats">

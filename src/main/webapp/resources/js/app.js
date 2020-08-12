@@ -173,14 +173,16 @@ document.addEventListener("DOMContentLoaded", function() {
       let pickUpTime = document.getElementById('pickUpTime').value;
       let pickupComment = document.getElementById('pickUpComment').value;
       let categories =   document.querySelectorAll('input[name=categories]:checked');
-      let institution = document.querySelector('input[name=organization]:checked');
+      let institution = document.querySelectorAll('input[name=organization]:checked');
 
-      var insitutionFinal= "";
+      var institutionFinal= "";
       for (var i = 0; i < institution.length ; i++) {
-        insitutionFinal +=((institution[i].nextElementSibling.nextElementSibling.innerHTML)) + ", ";
+        institutionFinal =((institution[i].nextElementSibling.nextElementSibling));
       }
+      var grandFinal = institutionFinal.querySelector("div").innerHTML;
 
-      console.log(institutionFinal);
+
+
       var catFinal="";
       for (var i = 0; i <categories.length ; i++) {
           catFinal+=((categories[i].nextElementSibling.nextElementSibling.innerHTML)) + ", ";
@@ -188,7 +190,7 @@ document.addEventListener("DOMContentLoaded", function() {
       console.log(catFinal)
 
       document.getElementById('bags').innerText = quantity + " worki " + catFinal ;
-      document.getElementById('institutionSum').innerText = insitutionFinal;
+      document.getElementById('institutionSum').innerText = grandFinal;
       document.getElementById('streetSum').innerText = street;
       document.getElementById('citySum').innerText = city;
       document.getElementById('zipCodeSum').innerText = zipCode;

@@ -50,9 +50,10 @@ public class DonationController {
             User user = customUser.getUser();
             donation.setUser(user);
             donationService.save(donation);
-            emailService.sendSimpleMessage(user.getUsername(), "Informacje o odbiorze", "Miasto "
-                    + donation.getCity() + " Moment odebrania: " + donation.getPickUpTime() + " " + donation.getPickUpDate() + "Ulica: " + donation.getStreet()
-                    + "Kategorie: " + donation.getCategories() + "Worki = " + donation.getQuantity());
+            emailService.sendSimpleMessage(user.getUsername(), "Informacje o odbiorze", "Witam \n Miasto "
+                    + donation.getCity() + "\n Moment odebrania: " + donation.getPickUpTime() + " " + donation.getPickUpDate() + "\n Ulica: " + donation.getStreet()
+                    + "\n Kategorie: " + donation.getCategories() + "\n Worki = " + donation.getQuantity() + " \n Uwagi dla kuriera: " + donation.getPickUpComment()
+                    + "\n" + "Dziękujemy ");
         } catch (Exception e) {
             e.printStackTrace();
         }

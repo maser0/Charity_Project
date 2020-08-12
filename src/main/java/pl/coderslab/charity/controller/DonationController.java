@@ -11,10 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import pl.coderslab.charity.model.CurrentUser;
 import pl.coderslab.charity.entity.Donation;
 import pl.coderslab.charity.entity.User;
-import pl.coderslab.charity.service.CategoryService;
-import pl.coderslab.charity.service.DonationService;
-import pl.coderslab.charity.service.InstitutionService;
-import pl.coderslab.charity.service.UserServiceImpl;
+import pl.coderslab.charity.service.*;
 
 import javax.validation.Valid;
 
@@ -24,32 +21,38 @@ public class DonationController {
     private final InstitutionService institutionService;
     private final DonationService donationService;
     private final UserServiceImpl userService;
+    private final EmailService emailService;
 
 
-    public DonationController(CategoryService categoryService, InstitutionService institutionService, DonationService donationService, UserServiceImpl userService) {
+    public DonationController(CategoryService categoryService, InstitutionService institutionService, DonationService donationService, UserServiceImpl userService, EmailService emailService) {
         this.categoryService = categoryService;
         this.institutionService = institutionService;
         this.donationService = donationService;
         this.userService = userService;
+        this.emailService = emailService;
     }
 
     @GetMapping("/form")
-    public String donationForm(Model model){
+    public String donationForm(Model model) {
 
         model.addAttribute("categories", categoryService.findAll());
         model.addAttribute("institutions", institutionService.findAll());
         model.addAttribute("donation", new Donation());
         return "form";
     }
+
     @PostMapping("/form")
-    public String post (@Valid @ModelAttribute Donation donation, @AuthenticationPrincipal CurrentUser customUser, BindingResult bindingResult){
-        if(bindingResult.hasErrors()){
+    public String post(@Valid @ModelAttribute Donation donation, @AuthenticationPrincipal CurrentUser customUser, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
             return "form";
         }
         try {
             User user = customUser.getUser();
             donation.setUser(user);
             donationService.save(donation);
+            emailService.sendSimpleMessage(user.getUsername(), "Informacje o odbiorze", "Miasto "
+                    + donation.getCity() + " Moment odebrania: " + donation.getPickUpTime() + " " + donation.getPickUpDate() + "Ulica: " + donation.getStreet()
+                    + "Kategorie: " + donation.getCategories() + "Worki = " + donation.getQuantity());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -66,7 +69,7 @@ public class DonationController {
     }
 
     @GetMapping("/donation/{id}")
-    public String edit(@PathVariable long id, Model model){
+    public String edit(@PathVariable long id, Model model) {
         Donation donation = donationService.read(id);
         model.addAttribute("Donation", donation);
         return "form";
@@ -79,7 +82,6 @@ public class DonationController {
         donationService.delete(donationToDelete);
         return "redirect:/donation/user";
     }
-
 
 
 }

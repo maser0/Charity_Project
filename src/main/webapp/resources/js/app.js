@@ -175,25 +175,27 @@ document.addEventListener("DOMContentLoaded", function() {
       let categories =   document.querySelectorAll('input[name=categories]:checked');
       let institution = document.querySelector('input[name=organization]:checked');
 
-      console.log(institution);
-      // let institutionFinal = institution.nextElementSibling.nextElementSibling;
+      var insitutionFinal= "";
+      for (var i = 0; i < institution.length ; i++) {
+        insitutionFinal +=((institution[i].nextElementSibling.nextElementSibling.innerHTML)) + ", ";
+      }
+
+      console.log(institutionFinal);
       var catFinal="";
       for (var i = 0; i <categories.length ; i++) {
           catFinal+=((categories[i].nextElementSibling.nextElementSibling.innerHTML)) + ", ";
-
-
       }
       console.log(catFinal)
 
       document.getElementById('bags').innerText = quantity + " worki " + catFinal ;
-      // document.getElementById('institutionSum').innerText = institutionFinal.innerText;
+      document.getElementById('institutionSum').innerText = insitutionFinal;
       document.getElementById('streetSum').innerText = street;
       document.getElementById('citySum').innerText = city;
       document.getElementById('zipCodeSum').innerText = zipCode;
       document.getElementById('dateSum').innerText = pickUpDate;
       document.getElementById('timeSum').innerText = pickUpTime;
       document.getElementById('commentSum').innerText = pickupComment;
-      // document.getElementById("xxx").innerText = categories;
+
 
 
 

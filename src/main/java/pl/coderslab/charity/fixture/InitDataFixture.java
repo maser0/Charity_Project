@@ -97,7 +97,7 @@ public class InitDataFixture {
         userRoles.add(roleService.findOneByName("ROLE_USER"));
 
         User user = new User();
-        user.setUsername("user@com.pl");
+        user.setUsername("morawski.andrzej@o2.pl");
         user.setPassword("user");
         user.setFirstName("Adam");
         user.setSurname("Bak");

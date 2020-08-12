@@ -173,27 +173,31 @@ document.addEventListener("DOMContentLoaded", function() {
       let pickUpTime = document.getElementById('pickUpTime').value;
       let pickupComment = document.getElementById('pickUpComment').value;
       let categories =   document.querySelectorAll('input[name=categories]:checked');
-      let institution = document.querySelector('input[name=organization]:checked');
+      let institution = document.querySelectorAll('input[name=organization]:checked');
 
-      console.log(institution);
-      // let institutionFinal = institution.nextElementSibling.nextElementSibling;
+      var institutionFinal= "";
+      for (var i = 0; i < institution.length ; i++) {
+        institutionFinal =((institution[i].nextElementSibling.nextElementSibling));
+      }
+      var grandFinal = institutionFinal.querySelector("div").innerHTML;
+
+
+
       var catFinal="";
       for (var i = 0; i <categories.length ; i++) {
           catFinal+=((categories[i].nextElementSibling.nextElementSibling.innerHTML)) + ", ";
-
-
       }
       console.log(catFinal)
 
       document.getElementById('bags').innerText = quantity + " worki " + catFinal ;
-      // document.getElementById('institutionSum').innerText = institutionFinal.innerText;
+      document.getElementById('institutionSum').innerText = grandFinal;
       document.getElementById('streetSum').innerText = street;
       document.getElementById('citySum').innerText = city;
       document.getElementById('zipCodeSum').innerText = zipCode;
       document.getElementById('dateSum').innerText = pickUpDate;
       document.getElementById('timeSum').innerText = pickUpTime;
       document.getElementById('commentSum').innerText = pickupComment;
-      // document.getElementById("xxx").innerText = categories;
+
 
 
 

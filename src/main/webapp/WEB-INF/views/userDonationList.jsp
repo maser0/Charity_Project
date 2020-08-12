@@ -35,7 +35,7 @@
 </section>
 
 <section>
-    <h2>List Darów</h2>
+    <h2>Lista Darów</h2>
 
 
     <div class="help--slides active" data-id="1">

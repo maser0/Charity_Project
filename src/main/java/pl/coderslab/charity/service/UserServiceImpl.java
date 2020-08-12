@@ -2,13 +2,16 @@ package pl.coderslab.charity.service;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import pl.coderslab.charity.entity.Role;
 import pl.coderslab.charity.entity.User;
 import pl.coderslab.charity.interfaces.UserService;
 import pl.coderslab.charity.repository.RoleRepository;
 import pl.coderslab.charity.repository.UserRepository;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -33,6 +36,9 @@ public class UserServiceImpl implements UserService {
     public void saveUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setEnabled(1);
+        Set<Role> userRoles = new HashSet<>();
+        userRoles.add(roleRepository.findByName("ROLE_USER"));
+        user.setRoles(userRoles);
         userRepository.save(user);
     }
 
